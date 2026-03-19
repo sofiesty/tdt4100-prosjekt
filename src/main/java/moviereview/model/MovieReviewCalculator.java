@@ -1,28 +1,23 @@
 package moviereview.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class MovieReviewCalculator{
 
-    //String name;
-    //HashMap<String, ArrayList<MovieReviewEntry>> movies;
-
-    //public MovieReviewCalculator(String name) {
-        //this.name = name;
-        
-   // }
-
     public static Integer getAvgReview(String name, Movies movies) {
-        double score;
+        double score = 0;
+
+        if (!movies.getReviews().containsKey(name)) {
+            throw new IllegalStateException("The movie doesn't exist");
+        } 
+
         if (!movies.checkMultipleReviews(name)) {
-            return movies.getReviews().get(name).get(1);
+            return movies.getReviews().get(name).get(0).getScore();
         }
+
         for (MovieReviewEntry movie : movies.getAllReviews(name)) {
-            
+                score += movie.getScore();
         }
+
+        return (int) Math.round(score / movies.getAllReviews(name).size());
+
     }
-
- 
-
 }
