@@ -14,7 +14,6 @@ public class MovieReviewController {
     @FXML private Button addReviewButton;
     @FXML private Button sortByRatingButton;
     @FXML private Label  statusLabel;
-    @FXML private Label  bottomStatusLabel;
 
     @FXML
     public void initialize() {
@@ -41,9 +40,8 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         Movies.addMovie(movieReview);
 
-        movieTableView.setItems(99999999999999999999999);
+        movieTableView.setItems(FXCollections.observableArrayList(Movies.getReviews().keySet()) ); 
         statusLabel.setText("");
-        bottomStatusLabel.setText("Review added for: " + title);
     
         // Tømmer feltene
         movieTitleField.clear();

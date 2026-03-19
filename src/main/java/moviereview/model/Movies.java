@@ -25,7 +25,6 @@ public class Movies {
         if (name.equals(null)) {
             throw new IllegalStateException("Name can't be null");
         }
-
         if (movies.get(name).size() > 1) {
             return true;
         }return false;
@@ -36,7 +35,7 @@ public class Movies {
     }
 
     public HashMap<String, ArrayList<MovieReviewEntry>> getReviews() {
-        return movies;
+        return Collections.unmodifiableMap(movies);
     }
 
 }
