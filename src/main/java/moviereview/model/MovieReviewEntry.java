@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MovieReviewEntry {
     private String name;
-    private int score;
+    private Integer score;
     private Date date;
     private String username;
 
@@ -16,19 +16,19 @@ public class MovieReviewEntry {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Integer getScore() {
-        return score;
+        return this.score;
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
 }
