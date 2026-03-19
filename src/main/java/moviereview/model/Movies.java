@@ -1,6 +1,7 @@
 package moviereview.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Movies {
@@ -22,9 +23,6 @@ public class Movies {
     } 
 
     public boolean checkMultipleReviews(String name) {
-        if (name.equals(null)) {
-            throw new IllegalStateException("Name can't be null");
-        }
         if (movies.get(name).size() > 1) {
             return true;
         }return false;
