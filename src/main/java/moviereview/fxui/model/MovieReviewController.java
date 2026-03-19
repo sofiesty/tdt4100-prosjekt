@@ -27,6 +27,7 @@ public class MovieReviewController {
 
     @FXML
     private void handleAddReview() {
+        // Henter info fra feltene bruker har fylt inn 
         String title = movieTitleField.getText();
         String username = usernameField.getText();
         Date date = reviewDatePicker.getValue();
@@ -37,9 +38,11 @@ public class MovieReviewController {
         return;
         }
 
+        // Lager ny 
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         Movies.addMovie(movieReview);
 
+        // Gir tabellen alle film navnene i en observable liste
         movieTableView.setItems(FXCollections.observableArrayList(Movies.getReviews().keySet()) ); 
         statusLabel.setText("");
     
@@ -47,7 +50,7 @@ public class MovieReviewController {
         movieTitleField.clear();
         usernameField.clear();
         reviewDatePicker.setValue(null);
-        ratingSpinner.getValueFactory().setValue(3);
+        ratingSpinner.getValueFactory().setValue(1);
     }
 
     @FXML
