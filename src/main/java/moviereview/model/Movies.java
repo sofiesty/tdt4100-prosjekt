@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Movies {
+    
     private HashMap<String, ArrayList<MovieReviewEntry>> movies;
 
-    public Movies(HashMap<String, ArrayList<MovieReviewEntry>> movies){
+    public Movies(){
         this.movies = new HashMap<>();
     }
 
@@ -18,6 +19,24 @@ public class Movies {
         }
 
         movies.get(movieName).add(review);
+    } 
+
+    public boolean checkMultipleReviews(String name) {
+        if (name.equals(null)) {
+            throw new IllegalStateException("Name can't be null");
+        }
+
+        if (movies.get(name).size() > 1) {
+            return true;
+        }return false;
+    }
+
+    public ArrayList<MovieReviewEntry> getAllReviews(String name) {
+        return movies.get(name);
+    }
+
+    public HashMap<String, ArrayList<MovieReviewEntry>> getReviews() {
+        return movies;
     }
 
 }
