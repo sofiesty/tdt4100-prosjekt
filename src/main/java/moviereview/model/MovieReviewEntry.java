@@ -1,14 +1,14 @@
 package moviereview.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MovieReviewEntry {
     private String name;
     private Integer score;
-    private Date date;
+    private LocalDate date;
     private String username;
 
-    public MovieReviewEntry(String name, Integer score, Date date, String username){
+    public MovieReviewEntry(String name, Integer score, LocalDate date, String username){
         this.name = name;
         this.score = score;
         this.date = date;
@@ -23,7 +23,7 @@ public class MovieReviewEntry {
         return this.score;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 

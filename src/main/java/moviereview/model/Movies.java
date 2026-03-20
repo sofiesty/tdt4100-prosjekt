@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 public class Movies {
     
-    private HashMap<String, ArrayList<MovieReviewEntry>> movies;
+    private static HashMap<String, ArrayList<MovieReviewEntry>> movies;
 
     public Movies(){
         this.movies = new HashMap<>();
     }
 
-    public void addMovie(MovieReviewEntry review) {
+    public static void addMovie(MovieReviewEntry review) {
         String movieName = review.getName();
 
         if (!movies.containsKey(movieName)) {
@@ -32,8 +32,8 @@ public class Movies {
         return movies.get(name);
     }
 
-    public HashMap<String, ArrayList<MovieReviewEntry>> getReviews() {
-        return Collections.unmodifiableMap(movies);
+    public static HashMap<String, ArrayList<MovieReviewEntry>> getReviews() {
+        return movies;
     }
 
 }

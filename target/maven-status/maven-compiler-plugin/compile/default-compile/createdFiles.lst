@@ -1,0 +1,7 @@
+moviereview/model/MovieReviewFileHandler.class
+moviereview/model/MovieReviewCalculator.class
+moviereview/fxui/MovieReviewController.class
+moviereview/model/Movies.class
+moviereview/fxui/MovieReviewLauncher.class
+moviereview/model/MovieReviewEntry.class
+moviereview/fxui/MovieReviewApp.class

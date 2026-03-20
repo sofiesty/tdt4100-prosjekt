@@ -1,11 +1,8 @@
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/exampleproject/Calculator.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/exampleproject/ExampleProjectApp.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/exampleproject/ExampleProjectController.java
 /Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/module-info.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/model/MovieReviewApp.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/model/MovieReviewCalculator.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/model/MovieReviewController.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/model/MovieReviewFileHandler.java
-/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/model/MovieReviewLauncher.java
+/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/MovieReviewApp.java
+/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/MovieReviewController.java
+/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/fxui/MovieReviewLauncher.java
+/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/model/MovieReviewCalculator.java
 /Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/model/MovieReviewEntry.java
+/Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/model/MovieReviewFileHandler.java
 /Users/sofiesirevagtysdal/Library/CloudStorage/OneDrive-NTNU/NTNU/Vår2026/ObjektOrientering/tdt4100-prosjekt/src/main/java/moviereview/model/Movies.java

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="moviereview.fxui.MovieReviewController"
+            prefWidth="800" prefHeight="600">
+
+    <top>
+        <VBox alignment="CENTER" style="-fx-background-color: #2c2c2c; -fx-padding: 16;">
+            <Label text="Movie Reviews"
+                   style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" style="-fx-padding: 20;">
+
+      
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Movies &amp; Ratings"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+                <TableView fx:id="movieTableView" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="movieTitleColumn"   text="Movie Title"  prefWidth="200"/>
+                        <TableColumn fx:id="averageRatingColumn" text="Avg. Rating" prefWidth="100"/>
+                        <TableColumn fx:id="reviewCountColumn"  text="# Reviews"   prefWidth="90"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No movies yet. Add a review to get started!"/>
+                    </placeholder>
+                </TableView>
+
+                <Button fx:id="sortByRatingButton"
+                        text="Sort by Rating ↓"
+                        onAction="#handleSortByRating"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
+            </VBox>
+
+        
+            <VBox spacing="12" minWidth="240" maxWidth="260"
+                  style="-fx-background-color: #f4f4f4; -fx-padding: 16; -fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6;">
+
+                <Label text="Add a Review"
+                       style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+
+               
+                <Label text="Movie Title"/>
+                <TextField fx:id="movieTitleField" promptText="Harry Potter"/>
+
+            
+                <Label text="Username"/>
+                <TextField fx:id="usernameField" promptText="Your username"/>
+
+          
+                <Label text="Rating (1–6)"/>
+                <Spinner fx:id="ratingSpinner" min="1" max="6" initialValue="1" editable="true" maxWidth="Infinity"/>
+
+                
+                <Label text="Date"/>
+                <DatePicker fx:id="reviewDatePicker" maxWidth="Infinity"/>
+
+                <Button fx:id="addReviewButton"
+                        text="Submit"
+                        onAction="#handleAddReview"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
+
+                <Button fx:id="saveToFileButton"
+                        text="Save to File"
+                        onAction="#handleSaveToFile"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
+
+                <Button fx:id="loadFromFileButton"
+                        text="Load from File"
+                        onAction="#handleLoadFromFile"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
+                
+                <Label fx:id="statusLabel" text="" wrapText="true"
+                       style="-fx-text-fill: #cc0000; -fx-font-size: 11px;"/>
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>

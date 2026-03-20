@@ -1,4 +1,4 @@
-package moviereview.fxui.model;
+package moviereview.fxui;
 
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -13,12 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import moviereview.model.MovieReviewEntry;
 import moviereview.model.Movies;
+import moviereview.model.MovieReviewFileHandler;
+import java.time.LocalDate;
 
 public class MovieReviewController {
-    @FXML private TableView<Movies> movieTableView;
-    @FXML private TableColumn<Movies, String>  movieTitleColumn;
-    @FXML private TableColumn<Movies, Double>  averageRatingColumn;
-    @FXML private TableColumn<Movies, Integer> reviewCountColumn;
+    @FXML private TableView<String> movieTableView;
+    @FXML private TableColumn<String, String>  movieTitleColumn;
+    @FXML private TableColumn<String, Double>  averageRatingColumn;
+    @FXML private TableColumn<String, Integer> reviewCountColumn;
 
     @FXML private TextField  movieTitleField;
     @FXML private TextField  usernameField;
@@ -44,7 +46,7 @@ public class MovieReviewController {
         // Henter info fra feltene bruker har fylt inn 
         String title = movieTitleField.getText();
         String username = usernameField.getText();
-        Date date = reviewDatePicker.getValue();
+        LocalDate date = reviewDatePicker.getValue();
         Integer score = ratingSpinner.getValue();
 
         if (title.isBlank() || username.isBlank() || date == null) {
@@ -75,13 +77,13 @@ public class MovieReviewController {
     @FXML
     private void handleSaveToFile() {
         // gjøre noe
-        bottomStatusLabel.setText("Reviews saved to file.");
+        statusLabel.setText("Reviews saved to file.");
     }
 
     @FXML
     private void handleLoadFromFile() {
         MovieReviewFileHandler.loadFromFile(); // loads data back into Movies
         // gjøre noe
-        bottomStatusLabel.setText("Reviews loaded from file.");
+        statusLabel.setText("Reviews loaded from file.");
     }
 }
