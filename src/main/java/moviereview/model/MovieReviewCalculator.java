@@ -1,19 +1,26 @@
 package moviereview.model;
 
 public class MovieReviewCalculator{
+    private Movies movies;
 
-    public static Integer getAvgReview(String name, Movies movies) {
-        double score = 0;
+    public MovieReviewCalculator(Movies movies) {
+        this.movies = movies;
+    }
 
-        if (!movies.checkMultipleReviews(name)) {
-            return movies.getReviews().get(name).get(0).getScore();
+    public Set<Integer> 
+
+    private Integer getAvgReview(String name) {
+        Integer score = 0;
+
+        if (!this.movies.checkMultipleReviews(name)) {
+            return this.movies.get(name).getScore();
         }
 
         for (MovieReviewEntry movie : movies.getAllReviews(name)) {
                 score += movie.getScore();
         }
 
-        return (int) Math.round(score / movies.getAllReviews(name).size());
+        return (Integer) Math.round(score / movies.getAllReviews(name).size());
 
     }
 }

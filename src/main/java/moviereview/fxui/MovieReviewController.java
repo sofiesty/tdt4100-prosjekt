@@ -15,6 +15,11 @@ import moviereview.model.MovieReviewEntry;
 import moviereview.model.Movies;
 import moviereview.model.MovieReviewFileHandler;
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 
 public class MovieReviewController {
     @FXML private TableView<String> movieTableView;
@@ -31,14 +36,19 @@ public class MovieReviewController {
     @FXML private Button sortByRatingButton;
     @FXML private Label  statusLabel;
 
+    private Movies movies;
+
+    public MovieReviewController(Movies movies) {
+        this.movies = movies;
+    }
+
     @FXML
     public void initialize() {
-        movieTitleColumn.setCellValueFactory(
-            new PropertyValueFactory<>("title"));        
-        averageRatingColumn.setCellValueFactory(
-            new PropertyValueFactory<>("averageRating")); 
-        reviewCountColumn.setCellValueFactory(
-            new PropertyValueFactory<>("reviewCount"));  
+        movieTitleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+
+        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(0.0).asObject());
+
+        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(0).asObject()); 
     }
 
     @FXML
@@ -50,16 +60,16 @@ public class MovieReviewController {
         Integer score = ratingSpinner.getValue();
 
         if (title.isBlank() || username.isBlank() || date == null) {
-        statusLabel.setText("Please fill in all fields.");
-        return;
+            statusLabel.setText("Please fill in all fields.");
+            return;
         }
 
         // Lager ny 
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
-        Movies.addMovie(movieReview);
+        this.movies.addMovie(movieReview);
 
-        // Gir tabellen alle film navnene i en observable liste (SJEKK OM DET SKAL VÆRE movieTitleView)
-        movieTableView.setItems(FXCollections.observableArrayList(Movies.getReviews().keySet()) ); 
+        // Gir tabellen alle film navnene i en observable liste
+        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles())); 
         statusLabel.setText("");
     
         // Tømmer feltene

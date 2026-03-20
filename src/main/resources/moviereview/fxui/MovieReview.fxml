@@ -6,8 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="moviereview.fxui.MovieReviewController"
+            xmlns:fx="http://javafx.com/fxml" 
             prefWidth="800" prefHeight="600">
 
     <top>
