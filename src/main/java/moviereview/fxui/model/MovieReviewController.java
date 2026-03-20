@@ -42,7 +42,7 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         Movies.addMovie(movieReview);
 
-        // Gir tabellen alle film navnene i en observable liste
+        // Gir tabellen alle film navnene i en observable liste (SJEKK OM DET SKAL VÆRE movieTitleView)
         movieTableView.setItems(FXCollections.observableArrayList(Movies.getReviews().keySet()) ); 
         statusLabel.setText("");
     
@@ -58,4 +58,16 @@ public class MovieReviewController {
 
     }
 
+    @FXML
+    private void handleSaveToFile() {
+        // gjøre noe
+        bottomStatusLabel.setText("Reviews saved to file.");
+    }
+
+    @FXML
+    private void handleLoadFromFile() {
+        MovieReviewFileHandler.loadFromFile(); // loads data back into Movies
+        // gjøre noe
+        bottomStatusLabel.setText("Reviews loaded from file.");
+    }
 }

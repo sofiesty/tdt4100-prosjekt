@@ -72,6 +72,17 @@
                         maxWidth="Infinity"
                         style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
 
+                <Button fx:id="saveToFileButton"
+                        text="Save to File"
+                        onAction="#handleSaveToFile"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
+
+                <Button fx:id="loadFromFileButton"
+                        text="Load from File"
+                        onAction="#handleLoadFromFile"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #f77777; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8;"/>
                 
                 <Label fx:id="statusLabel" text="" wrapText="true"
                        style="-fx-text-fill: #cc0000; -fx-font-size: 11px;"/>
