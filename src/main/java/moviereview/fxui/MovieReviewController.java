@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import moviereview.model.MovieReviewCalculator;
 
 
 public class MovieReviewController {
@@ -37,18 +38,20 @@ public class MovieReviewController {
     @FXML private Label  statusLabel;
 
     private Movies movies;
+    private MovieReviewCalculator calculator;
 
-    public MovieReviewController(Movies movies) {
+    public MovieReviewController(Movies movies, MovieReviewCalculator calculator) {
         this.movies = movies;
+        this.calculator = calculator;
     }
 
     @FXML
     public void initialize() {
         movieTitleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 
-        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(0.0).asObject());
+        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(calculator.getScores(data.getValue())).asObject());
 
-        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(0).asObject()); 
+        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getReviews(data.getValue())).asObject()); 
     }
 
     @FXML
@@ -68,8 +71,11 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         this.movies.addMovie(movieReview);
 
+        calculator.calculate();
+
         // Gir tabellen alle film navnene i en observable liste
-        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles())); 
+        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
+         
         statusLabel.setText("");
     
         // Tømmer feltene
