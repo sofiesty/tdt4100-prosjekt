@@ -31,7 +31,7 @@ public class MovieReviewCalculator{
         }
     }
 
-    private void AvgScore(String name) {
+    private int AvgScore(String name) {
         Integer score = 0;
 
         if (!this.movies.checkMultipleReviews(name)) {
