@@ -71,7 +71,7 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         this.movies.addMovie(movieReview);
 
-        calculator.calculate();
+        calculator.getAvgReview(title, this.movies);
 
         // Gir tabellen alle film navnene i en observable liste
         movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
@@ -87,7 +87,8 @@ public class MovieReviewController {
 
     @FXML
     private void handleSortByRating() {
-
+        // Sorterer tabellen etter gjennomsnittlig rating
+        movieTableView.getItems().sort((m1,m2) -> Double.compare(MovieReviewCalculator.getAvgReview(m2, this.movies), MovieReviewCalculator.getAvgReview(m1, this.movies))); 
     }
 
     @FXML
