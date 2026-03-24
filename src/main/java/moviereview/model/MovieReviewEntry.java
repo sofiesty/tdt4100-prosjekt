@@ -7,12 +7,13 @@ public class MovieReviewEntry {
     private Integer score;
     private LocalDate date;
     private String username;
+    
 
     public MovieReviewEntry(String name, Integer score, LocalDate date, String username){
         this.name = name;
         this.score = score;
         this.date = date;
-        this.username = username;
+        this.username = username; 
     }
 
     public String getName() {

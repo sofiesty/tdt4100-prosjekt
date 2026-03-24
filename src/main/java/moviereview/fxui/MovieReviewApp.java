@@ -9,7 +9,7 @@ import moviereview.model.Movies;
 import moviereview.model.MovieReviewCalculator;
 
 public class MovieReviewApp extends Application {
-    // Laster inn fxml filen og lager en "scene" som kjøres og vises
+    // Laster inn fxml filen og lager en "scene" som kjøres og vises 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviereview/fxui/MovieReview.fxml")); 

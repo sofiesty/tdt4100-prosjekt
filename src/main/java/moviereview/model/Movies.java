@@ -8,6 +8,7 @@ import java.util.Set;
 public class Movies {
     
     private HashMap<String, ArrayList<MovieReviewEntry>> movies;
+    
 
     public Movies(){
         this.movies = new HashMap<>();
