@@ -1,5 +1,6 @@
 package moviereview.fxui.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

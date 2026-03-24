@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MovieReviewLauncher",
+            "request": "launch",
+            "mainClass": "TDT4100_project/moviereview.fxui.MovieReviewLauncher",
+            "projectName": "tdt4100_v2024_prosjekt_boilerplate"
+        },
+        {
+            "type": "java",
             "request": "launch",
             "name": "Launch MovieReview",
             "mainClass": "moviereview.fxui.MovieReviewLauncher"

@@ -17,8 +17,12 @@ public class MovieReviewCalculator{
         return Collections.unmodifiableList(this.reviews);
     }
 
+    public Integer getNumberOfReviews() {
+        return this.reviews.size();
+    }
+
     public List<Integer> getScores() {
-        return Collections.unmodifiableList(this.scores);
+        return Collections.unmodifiableList(this.scores); 
     }
 
     public void calculate() {
@@ -31,11 +35,11 @@ public class MovieReviewCalculator{
         }
     }
 
-    private int AvgScore(String name) {
+    public int AvgScore(String name) {
         Integer score = 0;
 
         if (!this.movies.checkMultipleReviews(name)) {
-            return this.movies.get(name).getScore();
+            return this.movies.getAllReviews(name).get(0).getScore();
         }
 
         for (MovieReviewEntry movie : movies.getAllReviews(name)) {

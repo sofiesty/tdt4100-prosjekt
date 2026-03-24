@@ -49,9 +49,9 @@ public class MovieReviewController {
     public void initialize() {
         movieTitleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 
-        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(calculator.getScores(data.getValue())).asObject());
+        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(calculator.AvgScore(data.getValue())).asObject());
 
-        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getReviews(data.getValue())).asObject()); 
+        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getNumberOfReviews()).asObject()); 
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         this.movies.addMovie(movieReview);
 
-        calculator.getAvgReview(title, this.movies);
+        calculator.AvgScore(title);
 
         // Gir tabellen alle film navnene i en observable liste
         movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
@@ -88,7 +88,7 @@ public class MovieReviewController {
     @FXML
     private void handleSortByRating() {
         // Sorterer tabellen etter gjennomsnittlig rating
-        movieTableView.getItems().sort((m1,m2) -> Double.compare(MovieReviewCalculator.getAvgReview(m2, this.movies), MovieReviewCalculator.getAvgReview(m1, this.movies))); 
+        movieTableView.getItems().sort((m1,m2) -> Double.compare(calculator.AvgScore(m2), calculator.AvgScore(m1))); 
     }
 
     @FXML
