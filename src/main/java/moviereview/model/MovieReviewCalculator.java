@@ -36,14 +36,15 @@ public class MovieReviewCalculator{
     }
 
     public int AvgScore(String name) {
+        ArrayList<MovieReviewEntry> reviews = movies.getAllReviews(name);
         Integer score = 0;
 
-        if (!this.movies.checkMultipleReviews(name)) {
-            return this.movies.getAllReviews(name).get(0).getScore();
+        if (reviews.size() == 1) {
+            return reviews.get(0).getScore();
         }
 
-        for (MovieReviewEntry movie : movies.getAllReviews(name)) {
-                score += movie.getScore();
+        for (MovieReviewEntry movie : reviews) {
+                score += movie.getScore(); 
         }
 
         return (int) Math.round((double) score / movies.getAllReviews(name).size());

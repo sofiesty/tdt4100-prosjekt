@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import moviereview.model.MovieReviewEntry;
 import moviereview.model.Movies;
 import moviereview.model.MovieReviewFileHandler;
+
+import java.io.File;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.beans.property.SimpleStringProperty;
@@ -39,6 +41,7 @@ public class MovieReviewController {
 
     private Movies movies;
     private MovieReviewCalculator calculator;
+    private final MovieReviewFileHandler FileHandler = new MovieReviewFileHandler("review.txt");
 
     public MovieReviewController(Movies movies, MovieReviewCalculator calculator) {
         this.movies = movies;
@@ -57,8 +60,8 @@ public class MovieReviewController {
     @FXML
     private void handleAddReview() {
         // Henter info fra feltene bruker har fylt inn 
-        String title = movieTitleField.getText();
-        String username = usernameField.getText();
+        String title = movieTitleField.getText().trim();
+        String username = usernameField.getText().trim();
         LocalDate date = reviewDatePicker.getValue();
         Integer score = ratingSpinner.getValue();
 
@@ -93,14 +96,19 @@ public class MovieReviewController {
 
     @FXML
     private void handleSaveToFile() {
-        // gjøre noe
+        FileHandler.saveToFile(this.movies);
+
         statusLabel.setText("Reviews saved to file.");
     }
 
     @FXML
     private void handleLoadFromFile() {
-        MovieReviewFileHandler.loadFromFile(); // loads data back into Movies
-        // gjøre noe
+
+        this.movies = FileHandler.loadFromFile(); // loads data back into Movies
+        this.calculator = new MovieReviewCalculator(this.movies);
+        
+        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
+
         statusLabel.setText("Reviews loaded from file.");
     }
 }

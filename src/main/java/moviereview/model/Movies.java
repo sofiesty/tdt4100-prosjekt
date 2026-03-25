@@ -24,11 +24,12 @@ public class Movies {
         movies.get(movieName).add(review);
     } 
 
+    /* 
     public boolean checkMultipleReviews(String name) {
-        if (movies.get(name).size() > 1) {
-            return true;
-        }return false;
-    }
+        if (!movies.containsKey(name)) {
+            return false;
+        }return movies.get(name).size() > 1;
+    }*/
 
     public ArrayList<MovieReviewEntry> getAllReviews(String name) {
         return movies.get(name);
