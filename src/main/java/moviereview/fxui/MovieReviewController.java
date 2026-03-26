@@ -100,6 +100,7 @@ public class MovieReviewController {
 
     @FXML
     private void handleSaveToFile() {
+        // Lagrer alle reviews i reviewboard til en fil
         FileHandler.saveToFile(this.movies);
 
         statusLabel.setText("Reviews saved to file.");
