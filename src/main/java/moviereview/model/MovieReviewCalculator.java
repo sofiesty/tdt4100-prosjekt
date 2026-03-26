@@ -17,8 +17,8 @@ public class MovieReviewCalculator{
         return Collections.unmodifiableList(this.reviews);
     }
 
-    public Integer getNumberOfReviews() {
-        return this.reviews.size();
+    public int getNumberOfReviews(String title) {
+        return movies.getAllReviews(title).size();
     }
 
     public List<Integer> getScores() {
@@ -30,24 +30,19 @@ public class MovieReviewCalculator{
         this.reviews.clear();
 
         for (String name : movies.getMovieTitles()) {
-            this.scores.add(AvgScore(name));
+            this.scores.add(avgScore(name));
             this.reviews.add(movies.getAllReviews(name).size());
         }
     }
 
-    public int AvgScore(String name) {
-        ArrayList<MovieReviewEntry> reviews = movies.getAllReviews(name);
-        Integer score = 0;
-
-        if (reviews.size() == 1) {
-            return reviews.get(0).getScore();
+    public int avgScore(String name) {
+        List<MovieReviewEntry> reviews = movies.getAllReviews(name);
+        if (reviews.isEmpty()) return 0;
+            int total = 0;
+        for (MovieReviewEntry entry : reviews) {
+            total += entry.getScore();
         }
 
-        for (MovieReviewEntry movie : reviews) {
-                score += movie.getScore(); 
-        }
-
-        return (int) Math.round((double) score / movies.getAllReviews(name).size());
-
+        return (int) Math.round((double) total / reviews.size());
     }
 }
