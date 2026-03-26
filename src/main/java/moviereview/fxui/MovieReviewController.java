@@ -73,6 +73,8 @@ public class MovieReviewController {
             statusLabel.setText("Please fill in all fields.");
             return;
         }
+        // score = calculator.avgScore(title);
+
 
         // Lager ny 
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
@@ -108,9 +110,10 @@ public class MovieReviewController {
 
     @FXML
     private void handleLoadFromFile() {
-
+        // Laster reviews fra fil og legger de til i Movies
         FileHandler.loadFromFile(this.movies); // loads data back into Movies
-        this.calculator = new MovieReviewCalculator(this.movies);
+        
+        //this.calculator = new MovieReviewCalculator(this.movies);
         
         movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
 

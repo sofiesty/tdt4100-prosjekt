@@ -38,7 +38,9 @@ public class MovieReviewCalculator{
     public int avgScore(String name) {
         List<MovieReviewEntry> reviews = movies.getAllReviews(name);
         if (reviews.isEmpty()) return 0;
-            int total = 0;
+        
+        int total = 0;
+
         for (MovieReviewEntry entry : reviews) {
             total += entry.getScore();
         }
