@@ -96,6 +96,7 @@ public class MovieReviewController {
 
     @FXML
     private void handleSaveToFile() {
+        // Lagrer alle reviews i reviewboard til en fil
         FileHandler.saveToFile(this.movies);
 
         statusLabel.setText("Reviews saved to file.");
@@ -103,8 +104,8 @@ public class MovieReviewController {
 
     @FXML
     private void handleLoadFromFile() {
-
-        this.movies = FileHandler.loadFromFile(); // loads data back into Movies
+        // Laster reviews fra fil og oppdaterer Movies og MovieReviewCalculator
+        this.movies = FileHandler.loadFromFile(); 
         this.calculator = new MovieReviewCalculator(this.movies);
         
         movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));

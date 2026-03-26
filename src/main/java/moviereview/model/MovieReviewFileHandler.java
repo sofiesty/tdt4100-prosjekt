@@ -30,6 +30,7 @@ public class MovieReviewFileHandler {
     }
 
     public Movies loadFromFile() {
+        //Laster reviews fra fil og legger de i movies
         Movies movies = new Movies();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
