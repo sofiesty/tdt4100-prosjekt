@@ -29,9 +29,7 @@ public class MovieReviewFileHandler {
     }
     }
 
-    public Movies loadFromFile() {
-        //Laster reviews fra fil og legger de i movies
-        Movies movies = new Movies();
+    public void loadFromFile(Movies movies) {
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -44,13 +42,10 @@ public class MovieReviewFileHandler {
 
                     MovieReviewEntry entry = new MovieReviewEntry(name, score, date, username);
                     movies.addMovie(entry);
-
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return movies; 
     }
 }

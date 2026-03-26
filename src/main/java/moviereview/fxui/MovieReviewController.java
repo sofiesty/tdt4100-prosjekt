@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import moviereview.model.MovieReviewEntry;
 import moviereview.model.Movies;
 import moviereview.model.MovieReviewFileHandler;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -42,6 +43,8 @@ public class MovieReviewController {
     private Movies movies;
     private MovieReviewCalculator calculator;
     private final MovieReviewFileHandler FileHandler = new MovieReviewFileHandler("review.txt");
+    private ObservableList<String> movieList = FXCollections.observableArrayList();
+
 
     public MovieReviewController(Movies movies, MovieReviewCalculator calculator) {
         this.movies = movies;
@@ -52,9 +55,10 @@ public class MovieReviewController {
     public void initialize() {
         movieTitleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 
-        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(calculator.AvgScore(data.getValue())).asObject());
+        averageRatingColumn.setCellValueFactory(data -> new SimpleDoubleProperty(calculator.avgScore(data.getValue())).asObject());
 
-        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getNumberOfReviews()).asObject()); 
+        reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getNumberOfReviews(data.getValue())).asObject());
+        movieTableView.setItems(movieList); 
     }
 
     @FXML
@@ -74,10 +78,10 @@ public class MovieReviewController {
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         this.movies.addMovie(movieReview);
 
-        calculator.AvgScore(title);
+        calculator.avgScore(title);
 
         // Gir tabellen alle film navnene i en observable liste
-        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
+        movieList.setAll(this.movies.getMovieTitles());
          
         statusLabel.setText("");
     
@@ -91,7 +95,7 @@ public class MovieReviewController {
     @FXML
     private void handleSortByRating() {
         // Sorterer tabellen etter gjennomsnittlig rating
-        movieTableView.getItems().sort((m1,m2) -> Double.compare(calculator.AvgScore(m2), calculator.AvgScore(m1))); 
+        movieTableView.getItems().sort((m1,m2) -> Double.compare(calculator.avgScore(m2), calculator.avgScore(m1))); 
     }
 
     @FXML
@@ -104,8 +108,8 @@ public class MovieReviewController {
 
     @FXML
     private void handleLoadFromFile() {
-        // Laster reviews fra fil og oppdaterer Movies og MovieReviewCalculator
-        this.movies = FileHandler.loadFromFile(); 
+
+        FileHandler.loadFromFile(this.movies); // loads data back into Movies
         this.calculator = new MovieReviewCalculator(this.movies);
         
         movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
