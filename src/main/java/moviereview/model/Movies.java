@@ -39,4 +39,8 @@ public class Movies {
         return Collections.unmodifiableSet(movies.keySet());
     }
 
+    public void clear() {
+        movies.clear();
+    }
+
 }

@@ -111,11 +111,15 @@ public class MovieReviewController {
     @FXML
     private void handleLoadFromFile() {
         // Laster reviews fra fil og legger de til i Movies
+        this.movies.clear(); 
         FileHandler.loadFromFile(this.movies); // loads data back into Movies
         
-        //this.calculator = new MovieReviewCalculator(this.movies);
-        
-        movieTableView.setItems(FXCollections.observableArrayList(this.movies.getMovieTitles()));
+        this.calculator = new MovieReviewCalculator(this.movies);
+
+        movieList.setAll(this.movies.getMovieTitles());
+        movieTableView.setItems(movieList);
+        movieTableView.refresh();
+    
 
         statusLabel.setText("Reviews loaded from file.");
     }
