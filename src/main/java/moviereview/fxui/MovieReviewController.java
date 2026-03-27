@@ -1,6 +1,5 @@
 package moviereview.fxui;
 
-import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -73,7 +72,7 @@ public class MovieReviewController {
             statusLabel.setText("Please fill in all fields.");
             return;
         }
-        // score = calculator.avgScore(title);
+
 
 
         // Lager ny 
@@ -114,7 +113,7 @@ public class MovieReviewController {
         this.movies.clear(); //må tømme movies før vi laster inn data fra fil så det ikke skal oppstå duplikater
         FileHandler.loadFromFile(this.movies); // laster data tilbake inn i Movies
         
-        this.calculator = new MovieReviewCalculator(this.movies);
+        //this.calculator = new MovieReviewCalculator(this.movies);
 
         movieList.setAll(this.movies.getMovieTitles());
         movieTableView.setItems(movieList);
