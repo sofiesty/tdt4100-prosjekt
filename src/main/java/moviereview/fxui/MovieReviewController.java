@@ -111,8 +111,8 @@ public class MovieReviewController {
     @FXML
     private void handleLoadFromFile() {
         // Laster reviews fra fil og legger de til i Movies
-        this.movies.clear(); 
-        FileHandler.loadFromFile(this.movies); // loads data back into Movies
+        this.movies.clear(); //må tømme movies før vi laster inn data fra fil så det ikke skal oppstå duplikater
+        FileHandler.loadFromFile(this.movies); // laster data tilbake inn i Movies
         
         this.calculator = new MovieReviewCalculator(this.movies);
 
