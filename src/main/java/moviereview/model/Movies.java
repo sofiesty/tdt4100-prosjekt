@@ -14,6 +14,7 @@ public class Movies implements MoviesInterface {
         this.movies = new HashMap<>();
     }
 
+    @Override
     public void addMovie(MovieReviewEntry review) {
         String movieName = review.getName();
 
@@ -30,15 +31,17 @@ public class Movies implements MoviesInterface {
             return false;
         }return movies.get(name).size() > 1;
     }*/
-
+    @Override
     public ArrayList<MovieReviewEntry> getAllReviews(String name) {
         return movies.get(name);
     }
 
+    @Override
     public Set<String> getMovieTitles() {
         return Collections.unmodifiableSet(movies.keySet());
     }
 
+    @Override
     public void clear() {
         movies.clear();
     }
