@@ -1,24 +1,23 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import moviereview.model.MovieReviewCalculator;
 import moviereview.model.MovieReviewEntry;
+import moviereview.model.MovieReviewFileHandler;
 import moviereview.model.Movies;
-import moviereview.*;
-import java.util.ArrayList;
 
 public class MovieReviewTest {
 
     @Test
     public void testMovieIsAddedCorrect() {
         Movies movies = new Movies();
-
+        
         MovieReviewEntry movie = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
         movies.addMovie(movie);
 
@@ -42,6 +41,40 @@ public class MovieReviewTest {
         movies.addMovie(movie);
         movies.addMovie(movie2);
 
-        assertEquals(4, calculator.avgScore("Pingu")); 
+        assertEquals(4.0, (double)calculator.avgScore("Pingu")); 
     }
+
+    @Test
+    public void testSaveLoadtoFile() {
+        Movies movies = new Movies();
+       
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
+        MovieReviewEntry movie6 = new MovieReviewEntry("Star Wars", 2, LocalDate.of(2026, 8, 7), "sofiesty");
+
+        movies.addMovie(movie1);
+        movies.addMovie(movie2);
+        movies.addMovie(movie3);
+        movies.addMovie(movie4);
+        movies.addMovie(movie5);
+
+        MovieReviewFileHandler fileHandler = new MovieReviewFileHandler("review.txt");
+        fileHandler.saveToFile(movies);
+
+        Movies movies2 = new Movies();
+        MovieReviewFileHandler fileHandler2 = new MovieReviewFileHandler("review.txt");
+        fileHandler2.loadFromFile(movies2);
+
+        assertEquals(movies.getMovieTitles(), movies2.getMovieTitles());
+
+        movies2.addMovie(movie6);
+
+        assertNotEquals(movies.getMovieTitles(), movies2.getMovieTitles());
+    }
+
+
+
 }
