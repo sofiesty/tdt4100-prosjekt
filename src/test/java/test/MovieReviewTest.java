@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import moviereview.model.MovieReviewCalculator;
@@ -75,6 +77,52 @@ public class MovieReviewTest {
         assertNotEquals(movies.getMovieTitles(), movies2.getMovieTitles());
     }
 
+    @Test
+    public void setInvalidType() {
+        // score is 8, which is not allowed
+        assertThrows(IllegalArgumentException.class, () -> {
+            new MovieReviewEntry("Star Wars", 8, LocalDate.of(2026, 8, 7), "sofiesty");
+        });
+    } 
+    
+    @Test
+    public void reset() {
+        Movies movies = new Movies();
+       
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
 
+        movies.addMovie(movie1);
+        movies.addMovie(movie2);
+        movies.addMovie(movie3);
+        movies.addMovie(movie4);
+        movies.addMovie(movie5);
 
+        movies.clear();
+
+        assertTrue(movies.getMovieTitles().isEmpty());
+    }
+
+    @Test
+    public void testGetAllReviews() {
+        Movies movies = new Movies();
+        MovieReviewCalculator calculator = new MovieReviewCalculator(movies);
+       
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
+
+        movies.addMovie(movie1);
+        movies.addMovie(movie2);
+        movies.addMovie(movie3);
+        movies.addMovie(movie4);
+        movies.addMovie(movie5);
+        
+        assertEquals(3, calculator.getNumberOfReviews("Pingu"));
+    }
 }

@@ -36,7 +36,6 @@ public class MovieReviewCalculator{
     }
 
     public int avgScore(String name) {
-
         List<MovieReviewEntry> reviews = movies.getAllReviews(name);
         if (reviews.isEmpty()) return 0;
         
