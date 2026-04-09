@@ -8,10 +8,14 @@ import java.util.Set;
 
 public class Movies implements MoviesInterface {
     
-    private HashMap<String, ArrayList<MovieReviewEntry>> movies;
+    private final HashMap<String, ArrayList<MovieReviewEntry>> movies;
     
-    
-    private void addMovie(MovieReviewEntry review) {
+
+    public Movies(){
+        this.movies = new HashMap<>();
+    }
+
+    public void addMovie(MovieReviewEntry review) {
         String movieName = review.getName();
 
         if (!movies.containsKey(movieName)) {
@@ -21,14 +25,15 @@ public class Movies implements MoviesInterface {
         movies.get(movieName).add(review);
     }
 
-    public Movies(){
-        this.movies = new HashMap<>();
-    }
-
     @Override
-    public void addReview(String title, String username, LocalDate date, Integer score) {
+    public Boolean addReview(String title, String username, LocalDate date, Integer score) {
+        if (title.isBlank() || username.isBlank() || date == null) { 
+            return false;
+        }
+
         MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
         addMovie(movieReview);
+        return true;
     }
 
     @Override
@@ -45,5 +50,4 @@ public class Movies implements MoviesInterface {
     public void clear() {
         movies.clear();
     }
-
 }

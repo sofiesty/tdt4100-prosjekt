@@ -1,7 +1,5 @@
 package moviereview.fxui;
 
-import java.time.LocalDate;
-
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,18 +30,19 @@ public class MovieReviewController {
     @FXML private DatePicker reviewDatePicker;
 
     @FXML private Button addReviewButton;
-    @FXML private Button sortByRatingButton;
+    @FXML private Button sortByRatingButton; 
     @FXML private Label  statusLabel;
 
     private final Movies movies;
     private final MovieReviewCalculator calculator;
-    private final MovieReviewFileHandler FileHandler = new MovieReviewFileHandler("review.txt");
+    private final MovieReviewFileHandler FileHandler;
     private final ObservableList<String> movieList = FXCollections.observableArrayList();
 
 
-    public MovieReviewController(Movies movies, MovieReviewCalculator calculator) {
+    public MovieReviewController(Movies movies, MovieReviewCalculator calculator, MovieReviewFileHandler filehandler) {
         this.movies = movies;
         this.calculator = calculator;
+        this.FileHandler = filehandler;
     }
 
     @FXML
@@ -57,23 +56,18 @@ public class MovieReviewController {
     }
 
     @FXML
-    private void handleAddReview() {
-        // Henter info fra feltene bruker har fylt inn 
-        String title = movieTitleField.getText().trim();
-        String username = usernameField.getText().trim();
-        LocalDate date = reviewDatePicker.getValue();
-        Integer score = ratingSpinner.getValue();
+    private void handleAddReview() { 
+        Boolean done = this.movies.addReview(movieTitleField.getText().trim(),usernameField.getText().trim(),reviewDatePicker.getValue(),ratingSpinner.getValue());  
+        calculator.avgScore(movieTitleField.getText().trim()); //title
 
-        if (title.isBlank() || username.isBlank() || date == null) {
-            statusLabel.setText("Please fill in all fields.");
+        if (!done) {
+            statusLabel.setText("Please fill in correct values");
             return;
         }
-
-        this.movies.addReview(title, username, date, score); 
-        calculator.avgScore(title);
-
+        
         // Gir tabellen alle film navnene i en observable liste
         movieList.setAll(this.movies.getMovieTitles());
+        
         statusLabel.setText("");
     
         // Tømmer feltene

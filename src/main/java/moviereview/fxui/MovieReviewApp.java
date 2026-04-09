@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import moviereview.model.Movies;
 import moviereview.model.MovieReviewCalculator;
+import moviereview.model.MovieReviewFileHandler;
 
 public class MovieReviewApp extends Application {
     // Laster inn fxml filen og lager en "scene" som kjøres og vises 
@@ -16,7 +17,8 @@ public class MovieReviewApp extends Application {
         
         Movies movies = new Movies();
         MovieReviewCalculator calculator = new MovieReviewCalculator(movies);
-        MovieReviewController controller = new MovieReviewController(movies, calculator);
+        MovieReviewFileHandler filehandler = new MovieReviewFileHandler("reviews.txt");
+        MovieReviewController controller = new MovieReviewController(movies, calculator, filehandler);
         
         loader.setController(controller);
 

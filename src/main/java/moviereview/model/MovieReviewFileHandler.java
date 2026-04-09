@@ -2,13 +2,14 @@ package moviereview.model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class MovieReviewFileHandler {
     private final String filepath;
 
     public MovieReviewFileHandler(String filepath) {
-        if (filepath.isBlank() || filepath == null) {
+        if (filepath.isBlank()) {
             throw new IllegalArgumentException("The filepath cannot be null or blank");
         }
         this.filepath = filepath;
@@ -36,7 +37,7 @@ public class MovieReviewFileHandler {
                 String[] parts = line.split(",");
                 if (parts.length == 4) {
                     String name = parts[0].trim();
-                    Integer score = Integer.parseInt(parts[1].trim());
+                    int score = Integer.parseInt(parts[1].trim());
                     LocalDate date = LocalDate.parse(parts[2].trim());
                     String username = parts[3].trim();
 
@@ -44,8 +45,8 @@ public class MovieReviewFileHandler {
                     movies.addMovie(entry);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            }
     }
 }

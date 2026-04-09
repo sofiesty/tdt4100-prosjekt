@@ -5,9 +5,9 @@ import java.util.List;
 
 
 public class MovieReviewCalculator{
-    private Movies movies;
-    private List<Integer> reviews = new ArrayList<>();
-    private List<Integer> scores = new ArrayList<>();
+    private final Movies movies;
+    private final List<Integer> reviews = new ArrayList<>();
+    private final List<Integer> scores = new ArrayList<>();
 
     public MovieReviewCalculator(Movies movies) {
         this.movies = movies;
@@ -36,15 +36,15 @@ public class MovieReviewCalculator{
     }
 
     public int avgScore(String name) {
-        List<MovieReviewEntry> reviews = movies.getAllReviews(name);
-        if (reviews.isEmpty()) return 0;
+        List<MovieReviewEntry> specificReviews = movies.getAllReviews(name);
+        if (specificReviews.isEmpty()) return 0;
         
         int total = 0;
 
-        for (MovieReviewEntry entry : reviews) {
+        for (MovieReviewEntry entry : specificReviews) {
             total += entry.getScore();
         }
 
-        return (int) Math.round((double) total / reviews.size());
+        return (int) Math.round((double) total / specificReviews.size());
     }
 }
