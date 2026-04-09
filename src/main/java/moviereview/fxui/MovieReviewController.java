@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
@@ -27,7 +26,6 @@ public class MovieReviewController {
     @FXML private TextField  movieTitleField;
     @FXML private TextField  usernameField;
     @FXML private Spinner<Integer> ratingSpinner;
-    @FXML private DatePicker reviewDatePicker;
 
     @FXML private Button addReviewButton;
     @FXML private Button sortByRatingButton; 
@@ -53,11 +51,12 @@ public class MovieReviewController {
 
         reviewCountColumn.setCellValueFactory(data -> new SimpleIntegerProperty(calculator.getNumberOfReviews(data.getValue())).asObject());
         movieTableView.setItems(movieList); 
+        movieTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
     }
 
     @FXML
     private void handleAddReview() { 
-        Boolean done = this.movies.addReview(movieTitleField.getText().trim(),usernameField.getText().trim(),reviewDatePicker.getValue(),ratingSpinner.getValue());  
+        Boolean done = this.movies.addReview(movieTitleField.getText().trim(),usernameField.getText().trim(),ratingSpinner.getValue());  
         calculator.avgScore(movieTitleField.getText().trim()); //title
 
         if (!done) {
@@ -73,7 +72,6 @@ public class MovieReviewController {
         // Tømmer feltene
         movieTitleField.clear();
         usernameField.clear();
-        reviewDatePicker.setValue(null);
         ratingSpinner.getValueFactory().setValue(1);
     }
 

@@ -1,6 +1,5 @@
 package test;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,14 +19,13 @@ public class MovieReviewTest {
     public void testMovieIsAddedCorrect() {
         Movies movies = new Movies();
         
-        MovieReviewEntry movie = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie = new MovieReviewEntry("Pingu", 5, "celinehag");
         movies.addMovie(movie);
 
         ArrayList<MovieReviewEntry> test = movies.getAllReviews("Pingu");
         
         assertEquals("Pingu", test.get(0).getName());
         assertEquals(5, test.get(0).getScore());
-        assertEquals(LocalDate.of(2026, 4, 7), test.get(0).getDate());
         assertEquals("celinehag", test.get(0).getUsername());
 
     }
@@ -37,8 +35,8 @@ public class MovieReviewTest {
         Movies movies = new Movies();
         MovieReviewCalculator calculator = new MovieReviewCalculator(movies);
 
-        MovieReviewEntry movie = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 3, LocalDate.of(2026, 4, 7), "celinehag");
+        MovieReviewEntry movie = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 3, "celinehag");
         
         movies.addMovie(movie);
         movies.addMovie(movie2);
@@ -50,12 +48,12 @@ public class MovieReviewTest {
     public void testSaveLoadtoFile() {
         Movies movies = new Movies();
        
-        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
-        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
-        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
-        MovieReviewEntry movie6 = new MovieReviewEntry("Star Wars", 2, LocalDate.of(2026, 8, 7), "sofiesty");
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, "sofiesty");
+        MovieReviewEntry movie6 = new MovieReviewEntry("Star Wars", 2, "sofiesty");
 
         movies.addMovie(movie1);
         movies.addMovie(movie2);
@@ -81,7 +79,7 @@ public class MovieReviewTest {
     public void setInvalidType() {
         // score is 8, which is not allowed
         assertThrows(IllegalArgumentException.class, () -> {
-            new MovieReviewEntry("Star Wars", 8, LocalDate.of(2026, 8, 7), "sofiesty");
+            new MovieReviewEntry("Star Wars", 8, "sofiesty");
         });
     } 
     
@@ -89,11 +87,11 @@ public class MovieReviewTest {
     public void reset() {
         Movies movies = new Movies();
        
-        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
-        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
-        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, "sofiesty");
 
         movies.addMovie(movie1);
         movies.addMovie(movie2);
@@ -111,11 +109,11 @@ public class MovieReviewTest {
         Movies movies = new Movies();
         MovieReviewCalculator calculator = new MovieReviewCalculator(movies);
        
-        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, LocalDate.of(2026, 3, 7), "celinehag");
-        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, LocalDate.of(2026, 4, 7), "celinehag");
-        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, LocalDate.of(2026, 4, 7), "sofiesty");
-        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, LocalDate.of(2026, 8, 7), "sofiesty");
+        MovieReviewEntry movie1 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie2 = new MovieReviewEntry("Pingu", 4, "celinehag");
+        MovieReviewEntry movie3 = new MovieReviewEntry("Pingu", 5, "celinehag");
+        MovieReviewEntry movie4 = new MovieReviewEntry("Happy Feet", 6, "sofiesty");
+        MovieReviewEntry movie5 = new MovieReviewEntry("Harry Potter", 6, "sofiesty");
 
         movies.addMovie(movie1);
         movies.addMovie(movie2);

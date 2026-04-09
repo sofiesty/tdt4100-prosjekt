@@ -62,9 +62,6 @@
                 <Spinner fx:id="ratingSpinner" min="1" max="6" initialValue="1" editable="true" maxWidth="Infinity"/>
 
                 
-                <Label text="Date"/>
-                <DatePicker fx:id="reviewDatePicker" maxWidth="Infinity"/>
-
                 <Button fx:id="addReviewButton"
                         text="Submit"
                         onAction="#handleAddReview"

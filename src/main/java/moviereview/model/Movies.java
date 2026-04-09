@@ -1,6 +1,6 @@
 package moviereview.model;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,12 +26,12 @@ public class Movies implements MoviesInterface {
     }
 
     @Override
-    public Boolean addReview(String title, String username, LocalDate date, Integer score) {
-        if (title.isBlank() || username.isBlank() || date == null) { 
+    public Boolean addReview(String title, String username, Integer score) {
+        if (title.isBlank() || username.isBlank()) { 
             return false;
         }
 
-        MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
+        MovieReviewEntry movieReview = new MovieReviewEntry(title, score, username);
         addMovie(movieReview);
         return true;
     }
