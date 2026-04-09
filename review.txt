@@ -1,5 +1,0 @@
-Harry Potter,6,2026-08-07,sofiesty
-Pingu,5,2026-04-07,celinehag
-Pingu,4,2026-03-07,celinehag
-Pingu,5,2026-04-07,celinehag
-Happy Feet,6,2026-04-07,sofiesty
