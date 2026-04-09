@@ -29,6 +29,7 @@ public class MovieReviewFileHandler {
     }
 
     public void loadFromFile(Movies movies) {
+        movies.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
             while ((line = br.readLine()) != null) {

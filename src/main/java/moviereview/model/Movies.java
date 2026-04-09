@@ -1,5 +1,6 @@
 package moviereview.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,13 +10,8 @@ public class Movies implements MoviesInterface {
     
     private HashMap<String, ArrayList<MovieReviewEntry>> movies;
     
-
-    public Movies(){
-        this.movies = new HashMap<>();
-    }
-
-    @Override
-    public void addMovie(MovieReviewEntry review) {
+    
+    private void addMovie(MovieReviewEntry review) {
         String movieName = review.getName();
 
         if (!movies.containsKey(movieName)) {
@@ -23,14 +19,18 @@ public class Movies implements MoviesInterface {
         }
 
         movies.get(movieName).add(review);
-    } 
+    }
 
-    /* 
-    public boolean checkMultipleReviews(String name) {
-        if (!movies.containsKey(name)) {
-            return false;
-        }return movies.get(name).size() > 1;
-    }*/
+    public Movies(){
+        this.movies = new HashMap<>();
+    }
+
+    @Override
+    public void addReview(String title, String username, LocalDate date, Integer score) {
+        MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
+        addMovie(movieReview);
+    }
+
     @Override
     public ArrayList<MovieReviewEntry> getAllReviews(String name) {
         return movies.get(name);

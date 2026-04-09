@@ -1,6 +1,12 @@
 package moviereview.fxui;
 
+import java.time.LocalDate;
+
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -9,19 +15,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import moviereview.model.MovieReviewEntry;
-import moviereview.model.Movies;
-import moviereview.model.MovieReviewFileHandler;
-import javafx.collections.ObservableList;
-
-import java.io.File;
-import java.time.LocalDate;
-import javafx.collections.FXCollections;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import moviereview.model.MovieReviewCalculator;
+import moviereview.model.MovieReviewFileHandler;
+import moviereview.model.Movies;
 
 
 public class MovieReviewController {
@@ -39,10 +35,10 @@ public class MovieReviewController {
     @FXML private Button sortByRatingButton;
     @FXML private Label  statusLabel;
 
-    private Movies movies;
-    private MovieReviewCalculator calculator;
+    private final Movies movies;
+    private final MovieReviewCalculator calculator;
     private final MovieReviewFileHandler FileHandler = new MovieReviewFileHandler("review.txt");
-    private ObservableList<String> movieList = FXCollections.observableArrayList();
+    private final ObservableList<String> movieList = FXCollections.observableArrayList();
 
 
     public MovieReviewController(Movies movies, MovieReviewCalculator calculator) {
@@ -73,17 +69,11 @@ public class MovieReviewController {
             return;
         }
 
-
-
-        // Lager ny 
-        MovieReviewEntry movieReview = new MovieReviewEntry(title, score, date, username);
-        this.movies.addMovie(movieReview);
-
+        this.movies.addReview(title, username, date, score); 
         calculator.avgScore(title);
 
         // Gir tabellen alle film navnene i en observable liste
         movieList.setAll(this.movies.getMovieTitles());
-         
         statusLabel.setText("");
     
         // Tømmer feltene
@@ -109,17 +99,12 @@ public class MovieReviewController {
 
     @FXML
     private void handleLoadFromFile() {
-        // Laster reviews fra fil og legger de til i Movies
-        this.movies.clear(); //må tømme movies før vi laster inn data fra fil så det ikke skal oppstå duplikater
-        FileHandler.loadFromFile(this.movies); // laster data tilbake inn i Movies
-        
-        //this.calculator = new MovieReviewCalculator(this.movies);
+        FileHandler.loadFromFile(this.movies); // laster data tilbake inn i Movies    
 
         movieList.setAll(this.movies.getMovieTitles());
         movieTableView.setItems(movieList);
         movieTableView.refresh();
     
-
         statusLabel.setText("Reviews loaded from file.");
     }
 }
